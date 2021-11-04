@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2 StateMachine.unity
     guid: 5be8243bf9e8f2e41a61d35dbeacee1b
+  - enabled: 1
+    path: Assets/Scenes/3 Win Scene.unity
+    guid: fadc85aaaa5145043ac9299a970a0910
   m_configObjects: {}

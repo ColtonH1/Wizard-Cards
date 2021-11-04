@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerTurnCardGameState : CardGameState
 {
-    [SerializeField] Text _playerTurnTextUI = null;
+    [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
 
     int _playerTurnCount = 0;
 
