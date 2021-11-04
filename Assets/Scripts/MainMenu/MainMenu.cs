@@ -10,6 +10,14 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
+    }
+
     public void Quit()
     {
         Debug.Log("QUIT!");
