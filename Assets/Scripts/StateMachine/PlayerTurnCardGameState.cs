@@ -6,32 +6,40 @@ using TMPro;
 
 public class PlayerTurnCardGameState : CardGameState
 {
-    [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
+    [SerializeField] GameObject playAreaPnl;
+    [SerializeField] CharacterBase playerCB;
 
-    int _playerTurnCount = 0;
+    private bool passed;
 
     public override void Enter()
     {
         Debug.Log("Player Turn: ...Entering");
-        _playerTurnTextUI.gameObject.SetActive(true);
+        playerCB.ManaCost(-1); //add one mana point for starting new round
+        passed = false; //assume player isn't passing
 
-        _playerTurnCount++;
-        _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         //hook into events
         StateMachine.Input.PressedConfirm += OnPressedConfirm;
     }
 
     public override void Exit()
     {
-        _playerTurnTextUI.gameObject.SetActive(false);
         //unhook from events
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
 
         Debug.Log("Player Turn: ...Exiting");
     }
 
-    void OnPressedConfirm()
+    public void OnPressedConfirm()
     {
+        if(!passed)
+            playAreaPnl.transform.GetChild(0).GetComponent<CardBase>().PlayCard();
         StateMachine.ChangeState<EnemyTurnCardGameState>();
+    }
+
+    public void Passed()
+    {
+        passed = true;
+        Exit();
+        OnPressedConfirm();
     }
 }

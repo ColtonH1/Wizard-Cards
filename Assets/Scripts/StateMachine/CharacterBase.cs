@@ -5,12 +5,12 @@ using TMPro;
 
 public class CharacterBase : MonoBehaviour
 {
-    [SerializeField] int maxHP;
+    [SerializeField] public int maxHP;
     [SerializeField] TextMeshProUGUI hpText;
-    private int currentHP;
+    public int currentHP;
 
     [SerializeField] TextMeshProUGUI manaText;
-    private int currentMana;
+    public int currentMana;
 
     [SerializeField] public GameObject thisCharacter;
     [SerializeField] public GameObject opposingCharacter;
@@ -53,6 +53,6 @@ public class CharacterBase : MonoBehaviour
 
     public void ManaCost(int amount)
     {
-        currentMana += amount;
+        currentMana -= amount;
     }
 }

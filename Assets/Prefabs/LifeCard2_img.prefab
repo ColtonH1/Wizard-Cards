@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: -5572285892917915299}
   - component: {fileID: 2964102103193506717}
   - component: {fileID: -6565110990401465052}
-  - component: {fileID: -194540092268668186}
-  - component: {fileID: -6186683034898115145}
+  - component: {fileID: 6789840882868058081}
+  - component: {fileID: 5020934928975673596}
   m_Layer: 6
-  m_Name: ThunderCard1_img
+  m_Name: LifeCard2_img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53f218c396fafb143a32bdc384c37dc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0b083c7a09c7864abe68293b1f6b734, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -122,7 +122,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: -194540092268668186}
+        - m_Target: {fileID: 6789840882868058081}
           m_TargetAssemblyTypeName: CardZoom, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -154,7 +154,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -194540092268668186}
+        - m_Target: {fileID: 6789840882868058081}
           m_TargetAssemblyTypeName: CardZoom, Assembly-CSharp-firstpass
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -170,7 +170,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -194540092268668186}
+        - m_Target: {fileID: 6789840882868058081}
           m_TargetAssemblyTypeName: CardZoom, Assembly-CSharp-firstpass
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -229,7 +229,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &-194540092268668186
+--- !u!114 &6789840882868058081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   zoomCardPanel: {fileID: 0}
---- !u!114 &-6186683034898115145
+--- !u!114 &5020934928975673596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f0833f544bd7246879fb2f65b8e212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 1
-  attackAmount: 1
+  actionType: 2
+  attackAmount: 0
   healAmount: 0
-  manaCost: 1
-  originalImage: {fileID: 21300000, guid: 53f218c396fafb143a32bdc384c37dc2, type: 3}
+  manaCost: -3
+  originalImage: {fileID: 21300000, guid: b0b083c7a09c7864abe68293b1f6b734, type: 3}

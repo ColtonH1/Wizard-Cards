@@ -21,6 +21,7 @@ public class CardZoom : MonoBehaviour
         zoomCard = Instantiate(gameObject, new Vector2(zoomCardPanel.transform.localPosition.x, zoomCardPanel.transform.localPosition.y), Quaternion.identity);
         zoomCard.GetComponent<Image>().raycastTarget = false;
         zoomCard.transform.SetParent(canvas.transform, false);
+        Destroy(zoomCard.GetComponent<CardBase>());
 
         RectTransform rectCard = zoomCard.GetComponent<RectTransform>();
         RectTransform rectPanel = zoomCardPanel.GetComponent<RectTransform>();

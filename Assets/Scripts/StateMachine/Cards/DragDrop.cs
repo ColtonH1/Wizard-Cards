@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class DragDop : MonoBehaviour
+public class DragDrop : MonoBehaviour
 {
     private bool isDragging = false;
     private bool isOverDropZone = false;
     private GameObject dropZone;
     private Vector2 startPosition;
 
-    // Update is called once per frame
     void Update()
     {
         if(isDragging)
@@ -39,8 +39,17 @@ public class DragDop : MonoBehaviour
     public void EndDrag()
     {
         isDragging = false;
-        if(isOverDropZone)
+        bool canPlay = gameObject.GetComponent<CardBase>().CheckManaAvailable();
+        if (isOverDropZone && canPlay)
         {
+            while (dropZone.transform.childCount > 0)
+            {
+                Transform child;
+                Transform newParent = transform.parent;
+                child = dropZone.transform.GetChild(0);
+                child.transform.position = startPosition;
+                child.transform.SetParent(newParent);
+            }
             transform.SetParent(dropZone.transform, false);
         }
         else
