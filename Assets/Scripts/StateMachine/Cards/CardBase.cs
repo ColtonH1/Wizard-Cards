@@ -49,6 +49,9 @@ public class CardBase : MonoBehaviour
         if (canPlay)
         {
             ManaCost(manaCost);
+            Damage(attackAmount);
+            Heal(healAmount);
+            /*
             if (actionType == ActionType.ATTACKING)
             {
                 Damage(attackAmount);
@@ -60,7 +63,7 @@ public class CardBase : MonoBehaviour
             else
             {
                 Debug.LogError("Shouldn't be playing card. Action being done is: " + actionType);
-            }
+            }*/
             Debug.Log("Destroyed: " + gameObject.name);
             Destroy(gameObject, pauseTime);
             if(currentCharacter.name == "Player")

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class InputController : MonoBehaviour
         DetectCancel();
         DetectLeft();
         DetectRight();
+        DetectCheatWinButton();
+        DetectCheatLoseButton();
     }
 
     private void DetectRight()
@@ -54,6 +57,22 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             PressedConfirm?.Invoke();
+        }
+    }
+
+    private void DetectCheatWinButton()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            SceneManager.LoadScene("3 Win Scene");
+        }
+    }
+
+    private void DetectCheatLoseButton()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("4 Lose Scene");
         }
     }
 }

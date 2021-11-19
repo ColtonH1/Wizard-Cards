@@ -41,7 +41,7 @@ public class CharacterBase : MonoBehaviour
         manaText.text = "Mana: " + currentMana;
     }
 
-    public void DamageCharacter(int amount)
+    public virtual void DamageCharacter(int amount)
     {
         currentHP -= amount;
     }

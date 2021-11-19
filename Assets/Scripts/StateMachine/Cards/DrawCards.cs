@@ -31,6 +31,7 @@ public class DrawCards : MonoBehaviour
     {
         GameObject playerCard = Instantiate(numOfCards[Random.Range(0, numOfCards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
         playerCard.transform.SetParent(PlayerCardArea.transform, false);
+        PlayDeltSound();
     }
 
     private void DrawEnemyCards()
@@ -39,19 +40,29 @@ public class DrawCards : MonoBehaviour
         enemyCard.transform.SetParent(EnemyCardArea.transform, false);
         enemyCard.GetComponent<Image>().sprite = backOfCard;
 
+        PlayDeltSound();
+
         enemyCard.GetComponent<Image>().raycastTarget = false;
     }
 
     public IEnumerator ReplacePlayerCard(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        DrawPlayerCards();
+        /*
         GameObject playerCard = Instantiate(numOfCards[Random.Range(0, numOfCards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
         playerCard.transform.SetParent(PlayerCardArea.transform, false);
+        PlayDeltSound();*/
     }
 
     public IEnumerator ReplaceEnemyCard(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         DrawEnemyCards();
+    }
+
+    public void PlayDeltSound()
+    {
+        FindObjectOfType<AudioManager>().Play("CardDelt");
     }
 }

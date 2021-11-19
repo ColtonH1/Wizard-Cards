@@ -175,16 +175,18 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //move chosen card and then "flip" card while also playing placement sound
         if(cardChosen)
         {
             Sprite changeToOriginalImage;
             enemyDeck[0].transform.SetParent(enemyHand.transform.parent, false);
             enemyDeck[0].transform.position = Vector2.MoveTowards(enemyDeck[0].transform.position, placeCardPnl.transform.position, moveSpeed * Time.deltaTime);
             changeToOriginalImage = enemyDeck[0].GetComponent<CardBase>().originalImage;
-            
-            if(enemyDeck[0].transform.position == placeCardPnl.transform.position)
+            enemyDeck[0].transform.position = new Vector3(enemyDeck[0].transform.position.x, enemyDeck[0].transform.position.y, 0);
+            if (enemyDeck[0].transform.position == placeCardPnl.transform.position)
             {
                 enemyDeck[0].GetComponent<Image>().sprite = changeToOriginalImage;
+                FindObjectOfType<AudioManager>().Play("CardPlace");
                 cardChosen = false; //stop moving card
             }
         }

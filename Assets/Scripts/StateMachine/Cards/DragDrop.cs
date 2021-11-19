@@ -51,6 +51,7 @@ public class DragDrop : MonoBehaviour
                 child.transform.SetParent(newParent);
             }
             transform.SetParent(dropZone.transform, false);
+            FindObjectOfType<AudioManager>().Play("CardPlace");
         }
         else
         {

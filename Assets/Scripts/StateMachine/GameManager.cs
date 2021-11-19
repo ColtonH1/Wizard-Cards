@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator ShowTextWait(float waitTime)
     {
         ShowText();
+        FindObjectOfType<AudioManager>().Play("NoMana");
         yield return new WaitForSeconds(waitTime);
         HideText();
     }
