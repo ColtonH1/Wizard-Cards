@@ -76,4 +76,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         HideText();
     }
+
+    public void PlayClickSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Click");
+    }
 }

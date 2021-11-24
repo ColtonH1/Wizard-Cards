@@ -51,20 +51,7 @@ public class CardBase : MonoBehaviour
             ManaCost(manaCost);
             Damage(attackAmount);
             Heal(healAmount);
-            /*
-            if (actionType == ActionType.ATTACKING)
-            {
-                Damage(attackAmount);
-            }
-            else if (actionType == ActionType.HEALING)
-            {
-                Heal(healAmount);
-            }
-            else
-            {
-                Debug.LogError("Shouldn't be playing card. Action being done is: " + actionType);
-            }*/
-            Debug.Log("Destroyed: " + gameObject.name);
+
             Destroy(gameObject, pauseTime);
             if(currentCharacter.name == "Player")
             {
@@ -108,5 +95,13 @@ public class CardBase : MonoBehaviour
     public void Heal(int amount)
     {
         healCharacter.HealCharacter(amount * -1);
+    }
+
+    public void DiscardCard()
+    {
+        StartCoroutine(draw.ReplacePlayerCard(0));
+        GetComponent<CardZoom>().OnHoverExit();
+        Destroy(GetComponent<CardZoom>());
+        Destroy(gameObject, .5f);
     }
 }

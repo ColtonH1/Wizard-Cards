@@ -27,6 +27,10 @@ public class CharacterBase : MonoBehaviour
         {
             currentHP = maxHP;
         }
+        if(currentHP <= 0)
+        {
+            currentHP = 0;
+        }
 
         hpText.text = "Health: " + currentHP;
     }

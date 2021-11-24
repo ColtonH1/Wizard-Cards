@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] GameObject playAreaPnl;
+    [SerializeField] GameObject discardPnl;
     [SerializeField] CharacterBase playerCB;
 
     private bool passed;
@@ -31,9 +32,24 @@ public class PlayerTurnCardGameState : CardGameState
 
     public void OnPressedConfirm()
     {
-        if(!passed)
+        if(!passed && playAreaPnl.transform.childCount > 0)
+        {
             playAreaPnl.transform.GetChild(0).GetComponent<CardBase>().PlayCard();
-        StateMachine.ChangeState<EnemyTurnCardGameState>();
+            StateMachine.ChangeState<EnemyTurnCardGameState>();
+        }
+        else if(passed)
+            StateMachine.ChangeState<EnemyTurnCardGameState>();
+
+    }
+
+    public void OnPressedDiscard()
+    {
+        if(discardPnl.transform.childCount > 0)
+        {
+            discardPnl.transform.GetChild(0).GetComponent<CardBase>().DiscardCard();
+            Passed();
+        }
+
     }
 
     public void Passed()

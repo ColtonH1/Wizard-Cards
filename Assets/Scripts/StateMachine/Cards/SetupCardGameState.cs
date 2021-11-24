@@ -5,7 +5,6 @@ using UnityEngine;
 public class SetupCardGameState : CardGameState
 {
     [SerializeField] public int startingCardNumber = 7;
-    [SerializeField] int _numberOfPlayers = 2;
     [SerializeField] public float timeToWait;
     [SerializeField] GameObject gameManager;
     private DrawCards draw;
@@ -16,7 +15,6 @@ public class SetupCardGameState : CardGameState
     {
         draw = gameManager.GetComponent<DrawCards>();
         Debug.Log("Setup: Entering");
-        Debug.Log("Creating " + _numberOfPlayers + " players.");
         StartCoroutine(draw.PlaceStartingCards(timeToWait, startingCardNumber));
         Debug.Log("Creating deck with " + startingCardNumber + " cards.");
         //CANT change state while still in Enter()/Exit() transition!

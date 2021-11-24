@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Music
+  - Player Card Area Drop Zone
+  - Discard Drop Zone
+  - Player Drop Zone
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - Cards
   - Zoom
-  - 
+  - Post Processing
   - 
   - 
   - 
