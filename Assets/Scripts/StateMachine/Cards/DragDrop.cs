@@ -31,7 +31,6 @@ public class DragDrop : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         newCollision = collision.gameObject;
-        Debug.Log("Entering collision with " + newCollision.tag);
         isOverDropZone = true;
         /*
         if(dropZone == null)
@@ -48,7 +47,6 @@ public class DragDrop : MonoBehaviour
         {
             isOverDropZone = true;
             dropZone = collision.gameObject;
-            Debug.Log("Staying collision with " + dropZone.tag);
         }
     }
 
@@ -57,7 +55,6 @@ public class DragDrop : MonoBehaviour
 
         if(dropZone == collision.gameObject)
         {
-            Debug.Log("Exiting collision with " + dropZone.tag);
             isOverDropZone = false;
             dropZone = null;
         }
@@ -81,7 +78,6 @@ public class DragDrop : MonoBehaviour
             canPlay = true;
         if (isOverDropZone && canPlay)
         {
-            Debug.Log("Can play in " + dropZone.tag);
             if(dropZone.tag == "Discard Drop Zone" || dropZone.tag == "Player Drop Zone")
             {
                 if(dropZone.transform.childCount > 0 && dropZone.transform.GetChild(0) != transform)

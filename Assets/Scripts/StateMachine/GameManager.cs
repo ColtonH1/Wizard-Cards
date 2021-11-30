@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     //pause menu
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject mainPauseUI;
+    public GameObject optionsMenuUI;
+    public GameObject instructionsMenuUI;
+    public GameObject menuOptionsImagesUI;
 
     private void Update()
     {
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        menuOptionsImagesUI.SetActive(true);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
@@ -37,6 +42,8 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        menuOptionsImagesUI.SetActive(false);
+        ResetPauseMenu();
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
@@ -80,5 +87,12 @@ public class GameManager : MonoBehaviour
     public void PlayClickSound()
     {
         FindObjectOfType<AudioManager>().Play("Click");
+    }
+
+    public void ResetPauseMenu()
+    {
+        mainPauseUI.SetActive(true);
+        optionsMenuUI.SetActive(false);
+        instructionsMenuUI.SetActive(false);
     }
 }

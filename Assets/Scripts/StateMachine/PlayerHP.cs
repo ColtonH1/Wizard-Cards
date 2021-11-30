@@ -10,6 +10,7 @@ public class PlayerHP : CharacterBase
 {
     public float smooth;
     public float startVignetteTime;
+    public float deathTime;
     public float endVignetteTime;
     public Transform target;
     Volume volume;
@@ -60,7 +61,7 @@ public class PlayerHP : CharacterBase
 
     IEnumerator DisplayLoseScreen()
     {
-        yield return new WaitForSeconds(startVignetteTime);
+        yield return new WaitForSeconds(deathTime);
         SceneManager.LoadScene("4 Lose Scene");
     }
 }

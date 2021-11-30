@@ -183,8 +183,9 @@ public class EnemyAI : MonoBehaviour
             enemyDeck[0].transform.position = Vector2.MoveTowards(enemyDeck[0].transform.position, placeCardPnl.transform.position, moveSpeed * Time.deltaTime);
             changeToOriginalImage = enemyDeck[0].GetComponent<CardBase>().originalImage;
             enemyDeck[0].transform.position = new Vector3(enemyDeck[0].transform.position.x, enemyDeck[0].transform.position.y, 0);
-            if (enemyDeck[0].transform.position == placeCardPnl.transform.position)
+            if (enemyDeck[0].transform.position.magnitude == placeCardPnl.transform.position.magnitude)
             {
+                Debug.Log("Finished Moving");
                 enemyDeck[0].GetComponent<Image>().sprite = changeToOriginalImage;
                 FindObjectOfType<AudioManager>().Play("CardPlace");
                 cardChosen = false; //stop moving card

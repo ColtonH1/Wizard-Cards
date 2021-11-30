@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public AudioMixerGroup audioMixer;
 
+    private float[] originalVolumes;
     public static AudioManager instance;
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        originalVolumes = new float[sounds.Length];
     }
 
     private void Start()
@@ -49,5 +51,29 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
+    }
+
+    public void MuteAudio()
+    {
+        foreach (Sound s in sounds)
+        {
+            for(int i = 0; i < sounds.Length; i++)
+            {
+                originalVolumes[i] = s.volume;
+            }
+
+            s.source.volume = 0f;
+        }
+    }
+
+    public void UnmuteAudio()
+    {
+        foreach (Sound s in sounds)
+        {
+            for(int i = 0; i < sounds.Length; i++)
+            {
+                s.source.volume = originalVolumes[i];
+            }
+        }
     }
 }
