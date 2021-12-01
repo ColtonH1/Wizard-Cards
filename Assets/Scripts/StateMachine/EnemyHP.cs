@@ -9,6 +9,7 @@ public class EnemyHP : CharacterBase
     {
         DisplayHP();
         DisplayMana();
+        DisplayShield();
     }
 
     public override void DamageCharacter(int amount)

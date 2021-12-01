@@ -43,10 +43,20 @@ public class EnemyAI : MonoBehaviour
             return null; //pass
         }
 
+        /*Note to self: Code this more efficiently*/
         //check if there is a mana bonus
         for(int i = 0; i < enemyDeck.Count; i++)
         {
             if(enemyDeck[i].GetComponent<CardBase>().manaCost == -3)
+            {
+                GameObject temp;
+                cardChosen = true;
+                temp = enemyDeck[i];
+                enemyDeck[i] = enemyDeck[0];
+                enemyDeck[0] = temp;
+                return enemyDeck[0]; //play this card 
+            }
+            else if(enemyDeck[i].GetComponent<CardBase>().shieldAmount == 3)
             {
                 GameObject temp;
                 cardChosen = true;

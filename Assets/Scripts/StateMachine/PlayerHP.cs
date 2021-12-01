@@ -24,6 +24,16 @@ public class PlayerHP : CharacterBase
     {
         DisplayHP();
         DisplayMana();
+        DisplayShield();
+    }
+
+    protected override void DisplayHP()
+    {
+        base.DisplayHP();
+        if (currentHP < (maxHP / 2))
+            hpText.color = Color.red;
+        else
+            hpText.color = Color.white;
     }
 
     public override void DamageCharacter(int amount)

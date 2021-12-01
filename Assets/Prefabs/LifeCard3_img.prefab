@@ -71,7 +71,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 903ac9a37f424a948af47c5c62c0cb51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50339b74964d73e4895a0190ad97687b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69949c669bc59f46944ce1259b8d9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
 --- !u!114 &-5572285892917915299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,4 +260,4 @@ MonoBehaviour:
   attackAmount: 0
   healAmount: 5
   manaCost: 3
-  originalImage: {fileID: 21300000, guid: 903ac9a37f424a948af47c5c62c0cb51, type: 3}
+  originalImage: {fileID: 21300000, guid: 50339b74964d73e4895a0190ad97687b, type: 3}

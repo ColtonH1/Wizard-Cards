@@ -6,11 +6,14 @@ using TMPro;
 public class CharacterBase : MonoBehaviour
 {
     [SerializeField] public int maxHP;
-    [SerializeField] TextMeshProUGUI hpText;
+    [SerializeField] protected TextMeshProUGUI hpText;
     public int currentHP;
 
     [SerializeField] TextMeshProUGUI manaText;
     public int currentMana;
+
+    [SerializeField] TextMeshProUGUI shieldText;
+    public int currentShieldAmount;
 
     [SerializeField] public GameObject thisCharacter;
     [SerializeField] public GameObject opposingCharacter;
@@ -21,7 +24,7 @@ public class CharacterBase : MonoBehaviour
         currentMana = 0;
     }
 
-    protected void DisplayHP()
+    protected virtual void DisplayHP()
     {
         if (currentHP >= maxHP)
         {
@@ -45,8 +48,18 @@ public class CharacterBase : MonoBehaviour
         manaText.text = "Mana: " + currentMana;
     }
 
+    protected void DisplayShield()
+    {
+        shieldText.text = "Shield: " + currentShieldAmount;
+    }
+
     public virtual void DamageCharacter(int amount)
     {
+        int totalAmount = amount;
+        amount -= currentShieldAmount;
+        currentShieldAmount -= totalAmount;
+        if (currentShieldAmount < 0)
+            currentShieldAmount = 0;
         currentHP -= amount;
     }
 
@@ -58,5 +71,10 @@ public class CharacterBase : MonoBehaviour
     public void ManaCost(int amount)
     {
         currentMana -= amount;
+    }
+
+    public void AddShield(int amount)
+    {
+        currentShieldAmount += amount;
     }
 }

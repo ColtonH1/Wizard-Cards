@@ -19,6 +19,7 @@ public class CardBase : MonoBehaviour
     public int attackAmount;
     public int healAmount;
     public int manaCost;
+    public int shieldAmount;
     private float pauseTime;
     public Sprite originalImage;
     protected GameObject currentCharacter;
@@ -51,6 +52,7 @@ public class CardBase : MonoBehaviour
             ManaCost(manaCost);
             Damage(attackAmount);
             Heal(healAmount);
+            Shield(shieldAmount);
 
             Destroy(gameObject, pauseTime);
             if(currentCharacter.name == "Player")
@@ -95,6 +97,11 @@ public class CardBase : MonoBehaviour
     public void Heal(int amount)
     {
         healCharacter.HealCharacter(amount * -1);
+    }
+
+    public void Shield(int amount)
+    {
+        healCharacter.AddShield(amount);
     }
 
     public void DiscardCard()
