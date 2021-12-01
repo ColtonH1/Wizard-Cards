@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio
-    ;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public bool isFullScreen;
+    public Toggle fullScreenToggle;
+
+    private void Awake()
+    {
+        fullScreenToggle.isOn = Screen.fullScreen;
+    }
+
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", Mathf.Log10 (volume) * 20);
@@ -30,6 +37,6 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetFullScreenWindow()
     {
-        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 }

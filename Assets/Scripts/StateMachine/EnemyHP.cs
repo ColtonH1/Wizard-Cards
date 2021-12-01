@@ -21,7 +21,7 @@ public class EnemyHP : CharacterBase
 
     IEnumerator DisplayWinScreen()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene("3 Win Scene");
     }
 }

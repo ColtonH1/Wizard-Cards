@@ -6105,6 +6105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0e104a5ac834f8a41ad6090d49e6ecf6, type: 2}
   isFullScreen: 0
+  fullScreenToggle: {fileID: 528487602}
 --- !u!1 &1589833868
 GameObject:
   m_ObjectHideFlags: 0
@@ -8356,7 +8357,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -45}
-  m_SizeDelta: {x: 400, y: 45.256195}
+  m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007807316
 MonoBehaviour:
