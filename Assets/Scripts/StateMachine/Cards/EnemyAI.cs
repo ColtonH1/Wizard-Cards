@@ -43,8 +43,11 @@ public class EnemyAI : MonoBehaviour
             return null; //pass
         }
 
+
+
         /*Note to self: Code this more efficiently*/
         //check if there is a mana bonus
+        /*
         for(int i = 0; i < enemyDeck.Count; i++)
         {
             if(enemyDeck[i].GetComponent<CardBase>().manaCost == -3)
@@ -65,13 +68,22 @@ public class EnemyAI : MonoBehaviour
                 enemyDeck[0] = temp;
                 return enemyDeck[0]; //play this card 
             }
-        }
+        }*/
         //if current health is greater than 50%, then sort by greatest attack damage
         if(currentHealth > (maxHealth/2))
         {
-            SelectionSortByAttack(enemyDeck);
-            Debug.Log("SortByAttack");
-            return MoveBasedOnMana();
+            SelectionSortByManaAmount(enemyDeck);
+            if(enemyDeck[0].GetComponent<CardBase>().manaCost == 0)
+            {
+                return enemyDeck[0];
+            }
+            else
+            {
+                SelectionSortByAttack(enemyDeck);
+                Debug.Log("SortByAttack");
+                return MoveBasedOnMana();
+            }
+
         }
         //if less than 50%, sort by health
         else
@@ -178,6 +190,32 @@ public class EnemyAI : MonoBehaviour
                 temp = unsortedList[i];
                 unsortedList[i] = unsortedList[max];
                 unsortedList[max] = temp;
+            }
+        }
+    }
+
+    public void SelectionSortByManaAmount(List<GameObject> unsortedList)
+    {
+        int min;
+        GameObject temp;
+
+        for (int i = 0; i < unsortedList.Count; i++)
+        {
+            min = i;
+
+            for (int j = i + 1; j < unsortedList.Count; j++)
+            {
+                if (enemyDeck[j].GetComponent<CardBase>().manaCost < enemyDeck[min].GetComponent<CardBase>().manaCost)
+                {
+                    min = j;
+                }
+            }
+
+            if (min != i)
+            {
+                temp = unsortedList[i];
+                unsortedList[i] = unsortedList[min];
+                unsortedList[min] = temp;
             }
         }
     }

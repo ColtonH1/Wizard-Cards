@@ -16,6 +16,15 @@ public class GameManager : MonoBehaviour
     public GameObject instructionsMenuUI;
     public GameObject menuOptionsImagesUI;
 
+    public GameObject audioManagerGO;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManagerGO = GameObject.Find("AudioManager Variant");
+        audioManager = audioManagerGO.GetComponent<AudioManager>();
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -46,6 +55,16 @@ public class GameManager : MonoBehaviour
         ResetPauseMenu();
         Time.timeScale = 0f;
         gameIsPaused = true;
+    }
+
+    public void MuteAudio()
+    {
+        audioManager.MuteAudio();
+    }
+
+    public void UnmuteAudio()
+    {
+        audioManager.UnmuteAudio();
     }
 
     public void LoadMenu()
