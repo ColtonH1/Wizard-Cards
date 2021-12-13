@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f0833f544bd7246879fb2f65b8e212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 1
+  actionType: 0
   attackAmount: 8
   healAmount: 0
   manaCost: 6

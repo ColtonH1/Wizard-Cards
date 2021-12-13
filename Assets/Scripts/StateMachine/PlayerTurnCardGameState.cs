@@ -14,7 +14,6 @@ public class PlayerTurnCardGameState : CardGameState
 
     public override void Enter()
     {
-        Debug.Log("Player Turn: ...Entering");
         playerCB.ManaCost(-1); //add one mana point for starting new round
         passed = false; //assume player isn't passing
 
@@ -26,8 +25,6 @@ public class PlayerTurnCardGameState : CardGameState
     {
         //unhook from events
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
-
-        Debug.Log("Player Turn: ...Exiting");
     }
 
     public void OnPressedConfirm()

@@ -14,9 +14,7 @@ public class SetupCardGameState : CardGameState
     public override void Enter()
     {
         draw = gameManager.GetComponent<DrawCards>();
-        Debug.Log("Setup: Entering");
         StartCoroutine(draw.PlaceStartingCards(timeToWait, startingCardNumber));
-        Debug.Log("Creating deck with " + startingCardNumber + " cards.");
         //CANT change state while still in Enter()/Exit() transition!
         //DONT put ChangeState<> here.
         _activated = false;
@@ -35,6 +33,5 @@ public class SetupCardGameState : CardGameState
     public override void Exit()
     {
         _activated = false;
-        Debug.Log("Setup: Exiting...");
     }
 }

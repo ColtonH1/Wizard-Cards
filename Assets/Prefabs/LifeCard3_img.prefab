@@ -256,8 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f0833f544bd7246879fb2f65b8e212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 2
+  actionType: 1
   attackAmount: 0
   healAmount: 5
   manaCost: 3
+  shieldAmount: 0
   originalImage: {fileID: 21300000, guid: 50339b74964d73e4895a0190ad97687b, type: 3}

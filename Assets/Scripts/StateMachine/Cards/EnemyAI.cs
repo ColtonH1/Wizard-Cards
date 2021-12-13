@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject placeCardPnl;
     [SerializeField] float moveSpeed;
     private bool cardChosen;
+    private GameObject card;
 
     private int currentMana, currentHealth, maxHealth;
 
@@ -36,6 +37,17 @@ public class EnemyAI : MonoBehaviour
 
     public GameObject Think()
     {
+        MonteCarlo monteCarlo = gameObject.GetComponent<MonteCarlo>();
+        //GameObject card;
+        card = monteCarlo.Play(enemyDeck, currentMana, currentHealth, maxHealth);
+        if (card != null)
+            cardChosen = true;
+        return card;
+    }
+
+    /*
+    public GameObject Think()
+    {
         //check if we have looked at each card and decided there are none to play (zero left in enemyDeck)
         if(enemyDeck.Count == 0)
         {
@@ -43,6 +55,122 @@ public class EnemyAI : MonoBehaviour
             return null; //pass
         }
 
+        int whichCard = Random.Range(0, 4);
+
+        while(!cardChosen && !passing)
+        {
+            if(holdCard != null)
+            {
+                if(holdCard.GetComponent<CardBase>().manaCost > currentMana)
+                {
+                    SelectionSortByManaAmount(enemyDeck);
+                    if (enemyDeck[0].GetComponent<CardBase>().manaCost <= 0)
+                    {
+                        cardChosen = true;
+                        return enemyDeck[0];
+                    }
+                    else
+                    {
+                        passing = true;
+                        return null; //pass to wait for more mana
+                    }
+                }
+                else
+                {
+                    enemyDeck[0] = holdCard;
+                    holdCard = null;
+                    cardChosen = true;
+                    return enemyDeck[0]; //play this card 
+                }
+                //maybe decide if ai should keep waiting for the card or to discard it
+
+            }
+            switch(whichCard)
+            {
+                //choose to give mana
+                case 0:
+                    SelectionSortByManaAmount(enemyDeck);
+                    if (enemyDeck[0].GetComponent<CardBase>().manaCost < 0)
+                    {
+                        cardChosen = true;
+                        return enemyDeck[0];
+                    }
+                    else
+                        whichCard = Random.Range(0, 4);
+                    break;
+                //choose to use shield
+                case 1:
+                    for (int i = 0; i < enemyDeck.Count; i++)
+                    {
+                        if (enemyDeck[i].GetComponent<CardBase>().manaCost == 0)
+                        {
+                            GameObject temp;
+                            cardChosen = true;
+                            temp = enemyDeck[i];
+                            enemyDeck[i] = enemyDeck[0];
+                            enemyDeck[0] = temp;
+                            return enemyDeck[0]; //play this card 
+                        }
+                    }
+                    Think();
+                    if (cardChosen)
+                    {
+                        return enemyDeck[0];
+                    }
+                    else
+                    {
+                        passing = true;
+                        return null;
+                    }
+                //choose to attack
+                case 2:
+                    SelectionSortByAttack(enemyDeck);
+                    Debug.Log("SortByAttack");
+                    return MoveBasedOnMana();
+                //choose to heal
+                case 3:
+                    if(currentHealth < maxHealth)
+                    {
+                        SelectionSortByHealAmount(enemyDeck);
+                        //if there are no healing cards, sort by damage cards
+                        if (enemyDeck[0].GetComponent<CardBase>().healAmount == 0)
+                        {
+                            SelectionSortByAttack(enemyDeck);
+
+                            return MoveBasedOnMana();
+                        }
+                        else
+                        {
+                            return MoveBasedOnMana();
+                        }
+                    }
+                    else
+                    {
+                        Think();
+                        if (cardChosen)
+                        {
+                            return enemyDeck[0];
+                        }
+                        else
+                        {
+                            passing = true;
+                            return null;
+                        }
+                    }
+                default:
+                    Debug.Log("Shouldn't be able to reach this statement. Check code!");
+                    return null;
+            }
+        }
+        if (cardChosen)
+        {
+            return enemyDeck[0];
+        }
+        else
+        {
+            passing = true;
+            return null;
+        }
 
 
         /*Note to self: Code this more efficiently*/
@@ -69,12 +197,15 @@ public class EnemyAI : MonoBehaviour
                 return enemyDeck[0]; //play this card 
             }
         }*/
+
+        /*
         //if current health is greater than 50%, then sort by greatest attack damage
         if(currentHealth > (maxHealth/2))
         {
             SelectionSortByManaAmount(enemyDeck);
-            if(enemyDeck[0].GetComponent<CardBase>().manaCost == 0)
+            if(enemyDeck[0].GetComponent<CardBase>().manaCost <= 0)
             {
+                cardChosen = true;
                 return enemyDeck[0];
             }
             else
@@ -105,11 +236,45 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    private bool ShouldAIPlayThisCard()
+    {
+        int shouldPlayCard = Random.Range(0, 2);
+
+        if (shouldPlayCard == 0)
+            return false;
+        else
+            return true;
+    }
+
     private GameObject MoveBasedOnMana()
     {
+        bool playCard = ShouldAIPlayThisCard();
         //if card costs more mana than what enemy has...
-        if (enemyDeck[0].GetComponent<CardBase>().manaCost > currentMana)
+        if ((enemyDeck[0].GetComponent<CardBase>().manaCost > currentMana) && (enemyDeck[0].GetComponent<CardBase>().manaCost > currentMana + 2))
         {
+            //pass but remember which card the ai was wanting to play
+            if(playCard)
+            {
+                holdCard = enemyDeck[0];
+                passing = true;
+                return null; 
+            }
+            else
+            {
+                enemyDeck.RemoveAt(0);
+                Think();
+                if (cardChosen)
+                {
+                    return enemyDeck[0];
+                }
+                else
+                {
+                    passing = true;
+                    return null;
+                }
+            }
+
+            /*
             Debug.Log("Not enough mana");
             Debug.Log("Card mana cost: " + enemyDeck[0].GetComponent<CardBase>().manaCost + " and current mana is: " + currentMana);
             //check if card can be reached by passing twice
@@ -136,9 +301,25 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("Playing card");
-            cardChosen = true;
-            return enemyDeck[0]; //play this card
+            if(playCard)
+            {
+                Debug.Log("Playing card");
+                cardChosen = true;
+                return enemyDeck[0]; //play this card
+            }
+            else
+            {            
+                enemyDeck.RemoveAt(0);
+                Think();
+                if (cardChosen)
+                {
+                    return enemyDeck[0];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 
@@ -218,7 +399,7 @@ public class EnemyAI : MonoBehaviour
                 unsortedList[min] = temp;
             }
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -227,14 +408,14 @@ public class EnemyAI : MonoBehaviour
         if(cardChosen)
         {
             Sprite changeToOriginalImage;
-            enemyDeck[0].transform.SetParent(enemyHand.transform.parent, false);
-            enemyDeck[0].transform.position = Vector2.MoveTowards(enemyDeck[0].transform.position, placeCardPnl.transform.position, moveSpeed * Time.deltaTime);
-            changeToOriginalImage = enemyDeck[0].GetComponent<CardBase>().originalImage;
-            enemyDeck[0].transform.position = new Vector3(enemyDeck[0].transform.position.x, enemyDeck[0].transform.position.y, 0);
-            if (enemyDeck[0].transform.position.magnitude == placeCardPnl.transform.position.magnitude)
+            card.transform.SetParent(enemyHand.transform.parent, false);
+            card.transform.position = Vector2.MoveTowards(card.transform.position, placeCardPnl.transform.position, moveSpeed * Time.deltaTime);
+            changeToOriginalImage = card.GetComponent<CardBase>().originalImage;
+            card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0);
+            if (card.transform.position.magnitude == placeCardPnl.transform.position.magnitude)
             {
                 Debug.Log("Finished Moving");
-                enemyDeck[0].GetComponent<Image>().sprite = changeToOriginalImage;
+                card.GetComponent<Image>().sprite = changeToOriginalImage;
                 FindObjectOfType<AudioManager>().Play("CardPlace");
                 cardChosen = false; //stop moving card
             }

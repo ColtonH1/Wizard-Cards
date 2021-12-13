@@ -23,7 +23,6 @@ public class EnemyTurnCardGameState : CardGameState
 
     public override void Enter()
     {
-        Debug.Log("Enemy Turn: ...Enter");
         EnemyTurnBegan?.Invoke();
 
         screenBlocker.gameObject.SetActive(true);
@@ -56,12 +55,11 @@ public class EnemyTurnCardGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Enemy Turn: Exit...");
+        
     }
 
     IEnumerator EnemyThinkingRoutine(float pauseDuration)
     {
-        Debug.Log("Enemy thinking...");
         yield return new WaitForSeconds(pauseDuration);
         Thinking();
         yield return new WaitForSeconds(2f);

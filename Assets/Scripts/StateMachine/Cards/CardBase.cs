@@ -9,13 +9,12 @@ public class CardBase : MonoBehaviour
 {
     public enum ActionType
     {
-        THINKING,
         ATTACKING, 
         HEALING, 
-        PASSING
+        OTHER //no mana cost
     }
 
-    public ActionType actionType = ActionType.THINKING;
+    public ActionType actionType;
     public int attackAmount;
     public int healAmount;
     public int manaCost;
@@ -46,7 +45,6 @@ public class CardBase : MonoBehaviour
     {
         bool canPlay;
         canPlay = CheckManaAvailable();
-        Debug.Log("Can play?: " + canPlay);
         if (canPlay)
         {
             ManaCost(manaCost);
