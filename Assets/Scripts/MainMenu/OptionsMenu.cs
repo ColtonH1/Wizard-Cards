@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,30 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
+    public SettingsSO settings;
+
     public AudioMixer audioMixer;
     public bool isFullScreen;
     public Toggle fullScreenToggle;
+    public Slider audioSlider;
 
     private void Awake()
     {
-        fullScreenToggle.isOn = Screen.fullScreen;
+        //fullScreenToggle.isOn = Screen.fullScreen;
+
+
+    }
+
+    private void Start()
+    {
+        audioSlider.value = settings.soundSetting;
+        fullScreenToggle.SetIsOnWithoutNotify(settings.screenToggle);
+        audioSlider.onValueChanged.AddListener(UpdateSlider);
+    }
+
+    private void UpdateSlider(float soundChange)
+    {
+        settings.soundSetting = audioSlider.value;
     }
 
     public void SetVolume(float volume)

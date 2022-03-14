@@ -6103,9 +6103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b0efe47183044a95f81e7b399491d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 45830558424353a48855799253c2c8bd, type: 2}
   audioMixer: {fileID: 24100000, guid: 0e104a5ac834f8a41ad6090d49e6ecf6, type: 2}
   isFullScreen: 0
   fullScreenToggle: {fileID: 528487602}
+  audioSlider: {fileID: 2007807316}
 --- !u!1 &1589833868
 GameObject:
   m_ObjectHideFlags: 0

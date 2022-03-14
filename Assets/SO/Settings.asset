@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2534499a1b64e5546bcae0685a718927, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  soundSetting: 100
+  screenToggle: 0
+  playerName: 
+  playerSprites:
+  - {fileID: 21300000, guid: 753c2d887d626e145a38788902e146d5, type: 3}
+  - {fileID: 21300000, guid: 5362f126686a12641b2ac1f6ebeedbec, type: 3}
+  - {fileID: 21300000, guid: 43f9d38f85cb7164097b0c246ca4173d, type: 3}
+  - {fileID: 21300000, guid: c228427167108ad43aa099369f33fab8, type: 3}
+  - {fileID: 21300000, guid: 280d7f117c31db84a89be085f00cb488, type: 3}
+  enemySprites:
+  - {fileID: 21300000, guid: 7b9a05e6d2c28b4459fceee5336090dd, type: 3}
+  - {fileID: 21300000, guid: 309a0520805801a40bcda991fee7f9d3, type: 3}
+  - {fileID: 21300000, guid: 987fcc7055b01c74bbdbff785b6ffbdc, type: 3}
+  playerChar: {fileID: 0}
+  enemyChar: {fileID: 0}
+  difficulty: 0

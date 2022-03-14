@@ -402,7 +402,7 @@ public class EnemyAI : MonoBehaviour
     }*/
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //move chosen card and then "flip" card while also playing placement sound
         if(cardChosen)
@@ -412,7 +412,8 @@ public class EnemyAI : MonoBehaviour
             card.transform.position = Vector2.MoveTowards(card.transform.position, placeCardPnl.transform.position, moveSpeed * Time.deltaTime);
             changeToOriginalImage = card.GetComponent<CardBase>().originalImage;
             card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0);
-            if (card.transform.position.magnitude == placeCardPnl.transform.position.magnitude)
+            //Debug.Log("Cards position: " + card.transform.position.magnitude + " and panels position: " + placeCardPnl.transform.position.magnitude);
+            if (Mathf.Approximately(card.transform.position.magnitude, placeCardPnl.transform.position.magnitude))
             {
                 Debug.Log("Finished Moving");
                 card.GetComponent<Image>().sprite = changeToOriginalImage;

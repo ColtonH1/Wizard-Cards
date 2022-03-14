@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CharacterBase : MonoBehaviour
 {
-    [SerializeField] public int maxHP;
+    [SerializeField] public int maxHPEasy;
+    [SerializeField] public int maxHPMed;
+    [SerializeField] public int maxHPHard;
+    [HideInInspector] public int maxHP;
     [SerializeField] protected TextMeshProUGUI hpText;
     public int currentHP;
+
+    public SettingsSO settings;
 
     [SerializeField] TextMeshProUGUI manaText;
     public int currentMana;
@@ -20,8 +26,31 @@ public class CharacterBase : MonoBehaviour
 
     private void OnEnable()
     {
-        currentHP = maxHP;
+        SetMaxHealth();
         currentMana = 0;
+    }
+
+    protected virtual void SetMaxHealth()
+    {
+        switch(settings.difficulty)
+        {
+            case 0:
+                Debug.Log("Easy");
+                maxHP = maxHPEasy;
+                break;
+            case 1:
+                Debug.Log("Medium");
+                maxHP = maxHPMed;
+                break;
+            case 2:
+                Debug.Log("Hard");
+                maxHP = maxHPHard;
+                break;
+            default:
+                Debug.LogError("No difficulty set. Game not valid!");
+                break;
+        }
+        currentHP = maxHP;
     }
 
     protected virtual void DisplayHP()

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI notEnoughManaText;
+    public SettingsSO settings;
 
     //pause menu
     public static bool gameIsPaused = false;
@@ -16,11 +18,22 @@ public class GameManager : MonoBehaviour
     public GameObject instructionsMenuUI;
     public GameObject menuOptionsImagesUI;
 
+    public TMP_Text playerName;
+    public Sprite[] enemyAvatarArr;
+    public Image enemyAvatar;
+    //public Sprite[] playerAvatarArr;
+    public Image playerAvatar;
     public GameObject audioManagerGO;
     private AudioManager audioManager;
 
     private void Start()
     {
+        if (settings.playerName != "")
+            playerName.text = settings.playerName;
+        else
+            playerName.text = "Player";
+        SetEnemyAvatar();
+        SetPlayerAvatar();
         audioManagerGO = GameObject.Find("AudioManager Variant");
         audioManager = audioManagerGO.GetComponent<AudioManager>();
     }
@@ -38,6 +51,16 @@ public class GameManager : MonoBehaviour
                 Pause();
             }
         }
+    }
+
+    protected virtual void SetEnemyAvatar()
+    {
+        enemyAvatar.sprite = settings.enemyChar;
+    }
+
+    protected virtual void SetPlayerAvatar()
+    {
+        playerAvatar.sprite = settings.playerSprites[settings.playerCharNum];
     }
 
     public void Resume()

@@ -89,7 +89,6 @@ public class MonteCarlo : MonoBehaviour
             Debug.Log("Attack Card");
             if (cards[i].manaCost <= currentMana)
             {
-                Debug.Log("Attack Card has enough mana " + cards[i].cardGO.name);
                 if (cards[i].amountOfDammage > currentPlayerHealth)
                     cards[i].SetRank(0);
                 else
@@ -178,18 +177,14 @@ public class MonteCarlo : MonoBehaviour
         //randomly choose a move
         int chooseCard = Random.Range(0, cards.Count + 1);
         pass = cards.Count;
-        Debug.Log("chooseCard is " + chooseCard);
         //if we chose to pass
         if(chooseCard == pass)
         {
-            Debug.Log("passed");
             return null;
         }
-        Debug.Log("Rank of chosen card is: " + cards[chooseCard].GetRank());
         //which card we chose to play if we didn't pass
         if(cards[chooseCard].GetRank() == 1)
         {
-            Debug.Log("Rank is: " + cards[chooseCard].GetRank());
             return cards[chooseCard].cardGO;
         }
         return null;

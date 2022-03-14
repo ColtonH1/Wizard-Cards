@@ -72,6 +72,6 @@ public class PlayerHP : CharacterBase
     IEnumerator DisplayLoseScreen()
     {
         yield return new WaitForSeconds(deathTime);
-        SceneManager.LoadScene("4 Lose Scene");
+        SceneManager.LoadScene("Lose Scene");
     }
 }
