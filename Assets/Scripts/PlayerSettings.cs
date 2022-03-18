@@ -9,15 +9,10 @@ using TMPro;
 public class PlayerSettings : MonoBehaviour
 {
     public SettingsSO settings;
-    public enum Difficulties { EASY, MEDIUM, HARD };
-    public enum EnemyCharacter { ENEMYCHAR1, ENEMYCHAR2, ENEMYCHAR3 };
-    public enum PlayerCharacter { PLAYERCHAR1, PLAYERCHAR2, PLAYERCHAR3, PLAYERCHAR4, PLAYERCHAR5 };
     private string playerName;
     public TMP_InputField playerNameInput;
-    public static Difficulties difficulty = Difficulties.EASY;
-    public static EnemyCharacter enemyCharacter = EnemyCharacter.ENEMYCHAR1;
-    public static PlayerCharacter playerCharacter = PlayerCharacter.PLAYERCHAR1;
-    private Toggle[] m_Toggle;
+    private Toggle[] difficulty_Toggle;
+    private Toggle[] character_Toggle;
 
     public static PlayerSettings instance;
 
@@ -70,21 +65,21 @@ public class PlayerSettings : MonoBehaviour
         if (scene.name == "PlayerSettings")
         {
             //create toggle group and find the corrosponding toggles in the scene
-            m_Toggle = new Toggle[3];
-            m_Toggle[0] = GameObject.Find("Easy_tgle").GetComponent<Toggle>();
-            m_Toggle[1] = GameObject.Find("Medium_tgle").GetComponent<Toggle>();
-            m_Toggle[2] = GameObject.Find("Hard_tgle").GetComponent<Toggle>();
+            difficulty_Toggle = new Toggle[3];
+            difficulty_Toggle[0] = GameObject.Find("Easy_tgle").GetComponent<Toggle>();
+            difficulty_Toggle[1] = GameObject.Find("Medium_tgle").GetComponent<Toggle>();
+            difficulty_Toggle[2] = GameObject.Find("Hard_tgle").GetComponent<Toggle>();
 
             //cycle through the toggles, and make sure the one that should be on, is on.
             for (int i = 0; i < 3; i++)
             {
                 if (i == settings.difficulty)
                 {
-                    m_Toggle[i].GetComponent<Toggle>().isOn = true;
+                    difficulty_Toggle[i].GetComponent<Toggle>().isOn = true;
                 }
                 else
                 {
-                    m_Toggle[i].GetComponent<Toggle>().isOn = false;
+                    difficulty_Toggle[i].GetComponent<Toggle>().isOn = false;
                 }
             }
 
@@ -114,9 +109,9 @@ public class PlayerSettings : MonoBehaviour
             */
 
             //when toggle value is changed, update the difficulty
-            m_Toggle[0].onValueChanged.AddListener((isOn) => SetEasyDifficulty(isOn));
-            m_Toggle[1].onValueChanged.AddListener((isOn) => SetMediumDifficulty(isOn));
-            m_Toggle[2].onValueChanged.AddListener((isOn) => SetHardDifficulty(isOn));
+            difficulty_Toggle[0].onValueChanged.AddListener((isOn) => SetEasyDifficulty(isOn));
+            difficulty_Toggle[1].onValueChanged.AddListener((isOn) => SetMediumDifficulty(isOn));
+            difficulty_Toggle[2].onValueChanged.AddListener((isOn) => SetHardDifficulty(isOn));
         }
     }
 
@@ -128,7 +123,7 @@ public class PlayerSettings : MonoBehaviour
         if (isOn)
         {
             settings.difficulty = 0;
-            settings.enemyChar = settings.enemySprites[0];
+            settings.enemyCharNum = 0;
             //difficulty = Difficulties.EASY;
             //enemyCharacter = EnemyCharacter.ENEMYCHAR1;
         }
@@ -140,7 +135,7 @@ public class PlayerSettings : MonoBehaviour
         if (isOn)
         {
             settings.difficulty = 1;
-            settings.enemyChar = settings.enemySprites[1];
+            settings.enemyCharNum = 1;
             //difficulty = Difficulties.MEDIUM;
             //enemyCharacter = EnemyCharacter.ENEMYCHAR2;
         }
@@ -151,7 +146,7 @@ public class PlayerSettings : MonoBehaviour
         if (isOn)
         {
             settings.difficulty = 2;
-            settings.enemyChar = settings.enemySprites[2];
+            settings.enemyCharNum = 2;
             //difficulty = Difficulties.HARD;
             //enemyCharacter = EnemyCharacter.ENEMYCHAR3;
         }
@@ -163,32 +158,32 @@ public class PlayerSettings : MonoBehaviour
         if (scene.name == "PlayerSettings")
         {
             //create toggle group and find the corrosponding toggles in the scene
-            m_Toggle = new Toggle[5];
-            m_Toggle[0] = GameObject.Find("Character 1").GetComponent<Toggle>();
-            m_Toggle[1] = GameObject.Find("Character 2").GetComponent<Toggle>();
-            m_Toggle[2] = GameObject.Find("Character 3").GetComponent<Toggle>();
-            m_Toggle[3] = GameObject.Find("Character 4").GetComponent<Toggle>();
-            m_Toggle[4] = GameObject.Find("Character 5").GetComponent<Toggle>();
+            character_Toggle = new Toggle[5];
+            character_Toggle[0] = GameObject.Find("Character 1").GetComponent<Toggle>();
+            character_Toggle[1] = GameObject.Find("Character 2").GetComponent<Toggle>();
+            character_Toggle[2] = GameObject.Find("Character 3").GetComponent<Toggle>();
+            character_Toggle[3] = GameObject.Find("Character 4").GetComponent<Toggle>();
+            character_Toggle[4] = GameObject.Find("Character 5").GetComponent<Toggle>();
 
             //cycle through the toggles, and make sure the one that should be on, is on.
             for(int i = 0; i < 5; i++)
             {
                 if(i == settings.playerCharNum)
                 {
-                    m_Toggle[i].GetComponent<Toggle>().isOn = true;
+                    character_Toggle[i].GetComponent<Toggle>().isOn = true;
                 }
                 else
                 {
-                    m_Toggle[i].GetComponent<Toggle>().isOn = false;
+                    character_Toggle[i].GetComponent<Toggle>().isOn = false;
                 }
             }
 
             //when toggle value is changed, update the character sprite
-            m_Toggle[0].onValueChanged.AddListener((isOn) => SetChar1(isOn));
-            m_Toggle[1].onValueChanged.AddListener((isOn) => SetChar2(isOn));
-            m_Toggle[2].onValueChanged.AddListener((isOn) => SetChar3(isOn));
-            m_Toggle[3].onValueChanged.AddListener((isOn) => SetChar4(isOn));
-            m_Toggle[4].onValueChanged.AddListener((isOn) => SetChar5(isOn));
+            character_Toggle[0].onValueChanged.AddListener((isOn) => SetChar1(isOn));
+            character_Toggle[1].onValueChanged.AddListener((isOn) => SetChar2(isOn));
+            character_Toggle[2].onValueChanged.AddListener((isOn) => SetChar3(isOn));
+            character_Toggle[3].onValueChanged.AddListener((isOn) => SetChar4(isOn));
+            character_Toggle[4].onValueChanged.AddListener((isOn) => SetChar5(isOn));
         }
     }
 

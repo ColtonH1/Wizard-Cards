@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     protected virtual void SetEnemyAvatar()
     {
-        enemyAvatar.sprite = settings.enemyChar;
+        enemyAvatar.sprite = settings.enemySprites[settings.enemyCharNum];
     }
 
     protected virtual void SetPlayerAvatar()

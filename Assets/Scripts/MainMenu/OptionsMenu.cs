@@ -16,7 +16,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void Awake()
     {
-        //fullScreenToggle.isOn = Screen.fullScreen;
+        settings.screenToggle = Screen.fullScreen;
 
 
     }
@@ -25,6 +25,7 @@ public class OptionsMenu : MonoBehaviour
     {
         audioSlider.value = settings.soundSetting;
         fullScreenToggle.SetIsOnWithoutNotify(settings.screenToggle);
+        isFullScreen = settings.screenToggle;
         audioSlider.onValueChanged.AddListener(UpdateSlider);
     }
 

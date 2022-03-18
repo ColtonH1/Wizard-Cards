@@ -14,7 +14,6 @@ public class SettingsSO : ScriptableObject
     public Sprite[] enemySprites;
     public int playerCharNum;
     public int enemyCharNum;
-    public Sprite playerChar;
     public Sprite enemyChar;
     public int difficulty;
 

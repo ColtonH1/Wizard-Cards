@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7b9a05e6d2c28b4459fceee5336090dd, type: 3}
   - {fileID: 21300000, guid: 309a0520805801a40bcda991fee7f9d3, type: 3}
   - {fileID: 21300000, guid: 987fcc7055b01c74bbdbff785b6ffbdc, type: 3}
-  playerChar: {fileID: 0}
+  playerCharNum: 0
+  enemyCharNum: 0
   enemyChar: {fileID: 0}
   difficulty: 0
