@@ -17,8 +17,6 @@ public class OptionsMenu : MonoBehaviour
     private void Awake()
     {
         settings.screenToggle = Screen.fullScreen;
-
-
     }
 
     private void Start()

@@ -5,10 +5,13 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public AudioMixerGroup audioMixer;
+    public AudioMixerGroup audioMixerGroup;
+    public AudioMixer audioMixer;
 
     private float[] originalVolumes;
     public static AudioManager instance;
+
+    public SettingsSO settings;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,7 +30,7 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.outputAudioMixerGroup = audioMixer;
+            s.source.outputAudioMixerGroup = audioMixerGroup;
             
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -38,6 +41,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        audioMixer.SetFloat("volume", Mathf.Log10(settings.soundSetting) * 20);
         Play("Theme");
     }
 

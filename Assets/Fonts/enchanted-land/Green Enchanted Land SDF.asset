@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Green Enchanted Land SDF
   m_EditorClassIdentifier: 
-  hashCode: -1689490036
+  hashCode: 248582199
   material: {fileID: 1832960239250258165}
-  materialHashCode: -1040499540
+  materialHashCode: 1273546423
   m_Version: 1.1.0
   m_SourceFontFileGUID: 28dbc9ba836f9be40acce3b9c7c92216
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 28dbc9ba836f9be40acce3b9c7c92216,
@@ -2698,7 +2698,7 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0, g: 0.38679248, b: 0.11096884, a: 0.5}
+    - _GlowColor: {r: 0.3882353, g: 0.12421573, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}

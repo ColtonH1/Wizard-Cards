@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2534499a1b64e5546bcae0685a718927, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  soundSetting: 100
+  soundSetting: 1
   screenToggle: 0
   playerName: 
   playerSprites:
-  - {fileID: 21300000, guid: 753c2d887d626e145a38788902e146d5, type: 3}
-  - {fileID: 21300000, guid: 5362f126686a12641b2ac1f6ebeedbec, type: 3}
-  - {fileID: 21300000, guid: 43f9d38f85cb7164097b0c246ca4173d, type: 3}
-  - {fileID: 21300000, guid: c228427167108ad43aa099369f33fab8, type: 3}
-  - {fileID: 21300000, guid: 280d7f117c31db84a89be085f00cb488, type: 3}
+  - {fileID: 21300000, guid: fd5a7dd30d5044e4593118cca2f0bb32, type: 3}
+  - {fileID: 21300000, guid: 6f3f9d3426a42394db5eb53284f3c91a, type: 3}
+  - {fileID: 21300000, guid: 59ac714bddcc91a478d22023ea9636c2, type: 3}
+  - {fileID: 21300000, guid: 631e298f0b1d9c147becbf386115e342, type: 3}
+  - {fileID: 21300000, guid: b79d50637925e3b468f47c8805752633, type: 3}
+  - {fileID: 21300000, guid: 66ee353c1c889934db441ceaa60d4ea0, type: 3}
   enemySprites:
-  - {fileID: 21300000, guid: 7b9a05e6d2c28b4459fceee5336090dd, type: 3}
-  - {fileID: 21300000, guid: 309a0520805801a40bcda991fee7f9d3, type: 3}
-  - {fileID: 21300000, guid: 987fcc7055b01c74bbdbff785b6ffbdc, type: 3}
-  playerCharNum: 0
+  - {fileID: 21300000, guid: b7233eb8e9f027f41bc946bfc447297b, type: 3}
+  - {fileID: 21300000, guid: de714faac44b54f49952cd93909170f8, type: 3}
+  - {fileID: 21300000, guid: ee7a714a031938c4ca6ad815713560c2, type: 3}
+  playerCharNum: 3
   enemyCharNum: 0
   enemyChar: {fileID: 0}
   difficulty: 0

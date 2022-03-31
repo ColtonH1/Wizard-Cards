@@ -56,11 +56,13 @@ public class GameManager : MonoBehaviour
     protected virtual void SetEnemyAvatar()
     {
         enemyAvatar.sprite = settings.enemySprites[settings.enemyCharNum];
+        enemyAvatar.preserveAspect = true;
     }
 
     protected virtual void SetPlayerAvatar()
     {
         playerAvatar.sprite = settings.playerSprites[settings.playerCharNum];
+        playerAvatar.preserveAspect = true;
     }
 
     public void Resume()

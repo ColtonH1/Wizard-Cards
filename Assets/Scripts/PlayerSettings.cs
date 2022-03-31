@@ -83,31 +83,6 @@ public class PlayerSettings : MonoBehaviour
                 }
             }
 
-            /*
-            //make sure only the correct toggle is turned on and the other two are turned off when scene is loaded
-            switch (difficulty)
-            {
-                case Difficulties.EASY:
-                    m_Toggle[1].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[2].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[0].GetComponent<Toggle>().isOn = true;
-                    break;
-                case Difficulties.MEDIUM:
-                    m_Toggle[0].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[2].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[1].GetComponent<Toggle>().isOn = true;
-                    break;
-                case Difficulties.HARD:
-                    m_Toggle[0].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[1].GetComponent<Toggle>().isOn = false;
-                    m_Toggle[2].GetComponent<Toggle>().isOn = true;
-                    break;
-                default:
-                    Debug.LogError("No difficulty set. Game not valid!");
-                    break;
-            }
-            */
-
             //when toggle value is changed, update the difficulty
             difficulty_Toggle[0].onValueChanged.AddListener((isOn) => SetEasyDifficulty(isOn));
             difficulty_Toggle[1].onValueChanged.AddListener((isOn) => SetMediumDifficulty(isOn));
@@ -124,8 +99,6 @@ public class PlayerSettings : MonoBehaviour
         {
             settings.difficulty = 0;
             settings.enemyCharNum = 0;
-            //difficulty = Difficulties.EASY;
-            //enemyCharacter = EnemyCharacter.ENEMYCHAR1;
         }
 
     }
@@ -136,8 +109,6 @@ public class PlayerSettings : MonoBehaviour
         {
             settings.difficulty = 1;
             settings.enemyCharNum = 1;
-            //difficulty = Difficulties.MEDIUM;
-            //enemyCharacter = EnemyCharacter.ENEMYCHAR2;
         }
     }
 
@@ -147,8 +118,6 @@ public class PlayerSettings : MonoBehaviour
         {
             settings.difficulty = 2;
             settings.enemyCharNum = 2;
-            //difficulty = Difficulties.HARD;
-            //enemyCharacter = EnemyCharacter.ENEMYCHAR3;
         }
     }
     #endregion
@@ -157,16 +126,25 @@ public class PlayerSettings : MonoBehaviour
     {
         if (scene.name == "PlayerSettings")
         {
+            GridLayoutGroup characterTgle = GameObject.Find("Character_group_tgle").GetComponent<GridLayoutGroup>();
+            int numOfChars = characterTgle.transform.childCount;
             //create toggle group and find the corrosponding toggles in the scene
-            character_Toggle = new Toggle[5];
+            character_Toggle = new Toggle[numOfChars];
+            for(int i = 0; i < numOfChars; i++)
+            {
+                character_Toggle[i] = characterTgle.transform.GetChild(i).GetComponent<Toggle>();
+            }
+            /*
             character_Toggle[0] = GameObject.Find("Character 1").GetComponent<Toggle>();
             character_Toggle[1] = GameObject.Find("Character 2").GetComponent<Toggle>();
             character_Toggle[2] = GameObject.Find("Character 3").GetComponent<Toggle>();
             character_Toggle[3] = GameObject.Find("Character 4").GetComponent<Toggle>();
             character_Toggle[4] = GameObject.Find("Character 5").GetComponent<Toggle>();
+            character_Toggle[5] = GameObject.Find("Character 6").GetComponent<Toggle>();
+            */
 
             //cycle through the toggles, and make sure the one that should be on, is on.
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < numOfChars; i++)
             {
                 if(i == settings.playerCharNum)
                 {

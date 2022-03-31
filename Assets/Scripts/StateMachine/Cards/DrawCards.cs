@@ -38,6 +38,7 @@ public class DrawCards : MonoBehaviour
     {
         GameObject enemyCard = Instantiate(numOfCards[Random.Range(0, numOfCards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
         enemyCard.transform.SetParent(EnemyCardArea.transform, false);
+        enemyCard.GetComponent<CardBase>().originalImage = enemyCard.GetComponent<Image>().sprite;
         enemyCard.GetComponent<Image>().sprite = backOfCard;
 
         PlayDeltSound();

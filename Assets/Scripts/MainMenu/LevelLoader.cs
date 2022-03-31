@@ -18,8 +18,8 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel()
     {
-        int sceneIndex = 1;
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadAsynchronously(sceneIndex+1));
     }
 
     public void LoadWinScene()
